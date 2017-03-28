@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>show</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	
+
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- jQuery -->
+	<script src="//cdn.bootcss.com/jquery/3.0.0/core.js"></script>
+	<!-- Font Awesome -->
+	<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+	
+	
+
+	
+  	{% if empty_flag  %}
+     <h1>你的输入不合法！</h1>
+	{% elif no_record  %}
+     <h1>无记录！</h1>
+
+    {% else %}
+	<table class="table table-striped">
+  	 <tr>
+    	<th>USERNAME</th>
+    	<th></th>
+  	</tr>
+  	{% for uname in username_list %}
+		<tr>
+			<td>{{ uname }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+
+	{% endif %}
+	
+	
+
+</body>
+</html>
+
