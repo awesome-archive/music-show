@@ -12,6 +12,7 @@ sys.setdefaultencoding('utf-8')   # note
 def search_form(request):
     return render_to_response('index.html')
 
+'''
 def get_user_list():
     conn = sqlite3.connect('/Users/Mashaz/Github/django-test/music-show/user.db')
     cur = conn.cursor()
@@ -23,7 +24,8 @@ def get_user_list():
 
     conn.close()
     return username_list
-
+'''
+'''
 def get_all_song(username):
     conn = sqlite3.connect('/Users/Mashaz/Github/django-test/music-show/user.db')
     cur = conn.cursor()
@@ -39,30 +41,31 @@ def get_all_song(username):
     conn.close()
     return song_list
 # 接收请求数据
+'''
 
 def search(request):  
     request.encoding='utf-8'
     if 'username' and 'username2' in request.GET:
-        search_key = request.GET['username'].encode('utf-8')
-        search_key2 = request.GET['username2'].encode('utf-8')
-        if search_key =='':
-            context = {}
-            context['empty_flag'] = 'nothing';
-            return render(request, 'show.html', context)
-        elif search_key2 == '' :
-            username_list = get_all_song(search_key)
-            if username_list != []:
-                context = {}
-                context['username_list'] = username_list
-                return render(request, 'show.html', context)
-            else:
-                context = {}
-                context['no_record'] = 'nothing';
-                return render(request, 'show.html', context)
+        # search_key = request.GET['username'].encode('utf-8')
+        # search_key2 = request.GET['username2'].encode('utf-8')
+        # if search_key =='':
+        #     context = {}
+        #     context['empty_flag'] = 'nothing';
+        #     return render(request, 'show.html', context)
+        # elif search_key2 == '' :
+        #     username_list = get_all_song(search_key)
+        #     if username_list != []:
+        #         context = {}
+        #         context['username_list'] = username_list
+        #         return render(request, 'show.html', context)
+        #     else:
+        #         context = {}
+        #         context['no_record'] = 'nothing';
+        #         return render(request, 'show.html', context)
+        pass
 
     elif 'username' and 'isall' in request.GET:  # 输出所有歌单
 
-        search_key = request.GET['username'].encode('utf-8')
         mspider = neteasemusic.NeteaseSpider()
         uid = mspider.UsernameInput(search_key)
         is_all = request.GET['isall'].encode('utf-8')

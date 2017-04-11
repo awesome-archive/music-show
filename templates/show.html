@@ -8,8 +8,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>show</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	
 
 	<!-- Facebook and Twitter integration -->
@@ -29,12 +27,13 @@
 	<!--  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"> -->
 	<!-- Bootstrap -->
 	<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-
+	<style type="text/css">
+	</style>
 </head>
 
 
 <body>
-
+<div id='content'>
 	{% if song_list  %}
 	<table class="table table-striped">
   <!-- 	 <tr>
@@ -49,28 +48,88 @@
 	</table>
 	
 
-
-
-
-	<!-- {% if song_list  %}
-	<table class="table table-striped">
-  	 <tr>
-    	<th>song</th>
-    	<th></th>
-  	</tr>
-  	{% for uname in song_list %}
-		<tr>
-			<td>{{ uname }}</td>
-		</tr>
-	{% endfor %}
-	</table>
-	{% endif %} -->
-
+	{% elif keyword  %}
+	 <h1>yes!</h1>
+	
 
   	{% elif empty_flag  %}
      <h1>你的输入不合法！</h1>
 	{% elif no_record  %}
      <h1>无记录！</h1>
+	<!-- 歌手频率 -->
+	{% elif singer_list  %}   
+
+	<!-- <table class="table table-striped">
+  	 <tr>
+    	<th>歌手</th>
+    	<th>次数</th>
+  	</tr>
+  	{% for uname in singer_list %}
+  	{% for unamet in times_list %}
+		<tr>
+			<td>{{ uname }}</td>
+			<td>{{ unamet }}</td>
+		</tr>
+	{% endfor %}
+	{% endfor %}
+	</table> -->
+	<div id="wrapper" >
+	<canvas id="myChart"></canvas>
+	</div>
+	<script src="https://cdn.bootcss.com/Chart.js/2.5.0/Chart.js"></script>
+
+	<script>
+var singer_list = {{ singer_list|safe }}
+var times_list = {{ times_list|safe }}
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: singer_list,
+        datasets: [{
+            label: 'most',
+            data: times_list,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    	 responsive: true,
+    	 maintainAspectRatio: false,
+    	 legend: {
+            fullWidth:false
+        },
+    	title:{
+    		display: true,
+            text: '歌手频率柱状图'
+    	},
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>
 
     {% else %}
 	<table class="table table-striped">
@@ -88,7 +147,9 @@
 
 	{% endif %}
 	
-	
+</div>
+<script src="https://cdn.bootcss.com/Chart.js/2.5.0/Chart.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 
 </body>
 </html>

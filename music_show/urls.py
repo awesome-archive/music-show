@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from . import firstpage,search,show
+from . import firstpage,search,show,analys
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +25,6 @@ urlpatterns = [
     url(r'^search$', search.search),
     url(r'^show$',show.show),
     url(r'^getuserlist$',show.get_user_list),
+    url(r'^analysis$',firstpage.analysis_page),
+    url(r'^show-analysis$',analys.analysis),
 ]

@@ -14,6 +14,7 @@ from collections import Counter
 
 
 '''
+bug report
 username=修车 singer=unknown
 '''
 def UserSearch(username):
@@ -114,4 +115,19 @@ class NeteaseSpider:
 
 		return songList,singerList
 
+	
+	def singerAnalysis(self,singerList):
 
+		word_counts = Counter(singerList)
+		top_three = word_counts.most_common(3)
+		try:
+			x1 = top_three.pop()
+			x2 = top_three.pop()
+			x3 = top_three.pop()
+		except:
+			return 'error'
+		singer_info_list = []
+		singer_info_list.append(str(x3[0])+str('--')+str(x3[1]))  # most often 
+		singer_info_list.append(str(x2[0])+str('--')+str(x2[1]))
+		singer_info_list.append(str(x1[0])+str('--')+str(x1[1]))
+		return singer_info_list
