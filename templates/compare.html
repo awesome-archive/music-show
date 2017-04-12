@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>查询</title>
+	<title>比较</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
@@ -54,9 +54,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/index">歌单导出<span class="sr-only">(current)</span></a></li>
+        <li><a href="/index">歌单导出<span class="sr-only">(current)</span></a></li>
         <li><a href="/analysis">歌手分析</a></li>
-        <li><a href="/compare">用户比对</a></li>
+        <li class="active"><a href="/compare">用户比对</a></li>
         <li><a href="https://github.com/mashaz" target="view_window">Github</a></li>
          <li><a href="https://mashaz.github.io" target="view_window">Blog</a></li>
         
@@ -80,22 +80,23 @@
 							<!-- <h1>Analysis</h1> -->
 							
 							<div class="row">
-								<form class="form-inline" id="fh5co-header-subscribe"  action='/search' method='get' >
+								<form class="form-inline" id="fh5co-header-subscribe"  action='/show-compare' method='get' >
 									<div class="col-md-12 col-md-offset-0">
 										<div class="form-group">
-											<input type="text" class="form-control" id="username" placeholder="输入用户名" name="username" />
+											<input type="text" class="form-control" id="username1" placeholder="输入用户名1" name="username1" />
+											<input type="text" class="form-control" id="username2" placeholder="输入用户名2" name="username2" >
 											<br>
 											<br>
 											 <div class="checkbox">
    											 <label>
-  										    <input type="checkbox" id='isall' name='isall'> 所有列表#默认红心列表
+  										    <input type="checkbox" id='isall' name='isall'> 所有列表#默认红心列表,暂未实现
     										</label>
   											</div>
 											
 											 
-											<!-- <input type="text" class="form-control" id="username2" placeholder="输入用户名2" name="username2" > -->
+											
 											<br><br>
-											<button type="submit" class="btn btn-primary" >查询</button>
+											<button type="submit" class="btn btn-primary" >对比</button>
 										</div>
 									</div>
 								</form>

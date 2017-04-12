@@ -28,13 +28,56 @@
 	<!-- Bootstrap -->
 	<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 	<style type="text/css">
+ #wrapper,#wrapper2{
+    height: 400px;
+  }
+    .table-content{
+  width: 400px;
+}
+.canvas-table{
+  float: left;
+}
 	</style>
+
 </head>
 
 
 <body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index">Mashaz</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/index">歌单导出<span class="sr-only">(current)</span></a></li>
+        <li><a href="/analysis">歌手分析</a></li>
+        <li><a href="/compare">用户比对</a></li>
+        <li><a href="https://github.com/mashaz" target="view_window">Github</a></li>
+         <li><a href="https://mashaz.github.io" target="view_window">Blog</a></li>
+        
+      </ul>
+    
+      <ul class="nav navbar-nav navbar-right">
+        <!--nav尾部-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <div id='content'>
 	{% if song_list  %}
+<!--   <a href="/export2kgl">导出到.kgl</a> -->
+  <!-- todo -->
+  <div class="table-content">
 	<table class="table table-striped">
   <!-- 	 <tr>
     	<th>song</th>
@@ -46,11 +89,155 @@
 		</tr>
 	{% endfor %}
 	</table>
-	
+	</div>
 
-	{% elif keyword  %}
-	 <h1>yes!</h1>
-	
+	{% elif final_sentence  %}
+	 <h3>{{ final_sentence }}</h3>
+<br>
+
+<div id="wrapper" class="col-md-4 canvas-table">
+  <canvas id="myChart" ></canvas>
+
+  </div>
+  <div id="wrapper2" class="col-md-4 canvas-table">
+
+  <canvas id="myChart2" ></canvas>
+  </div>
+  <script src="https://cdn.bootcss.com/Chart.js/2.5.0/Chart.js"></script>
+
+  <script>
+var singer_list = {{ singer_list|safe }}
+var times_list = {{ times_list|safe }}
+var singer_list2 = {{ singer_list2|safe }}
+var times_list2 = {{ times_list2|safe }}
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: singer_list,
+        datasets: [{
+            label: '出现次数',
+            data: times_list,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                 'rgba(255, 222, 64, 0.2)',
+                  'rgba(255, 2, 64, 0.2)',
+                   
+                    'rgba(255, 159,222, 0.2)',
+                    'rgba(33, 55, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 222, 64, 1)',
+                  'rgba(255, 2, 64, 1)',
+                   
+                    'rgba(255, 159,222, 1)',
+                    'rgba(33, 55, 64, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+       responsive: true,
+       maintainAspectRatio: false,
+       legend: {
+            fullWidth:false
+        },
+      title:{
+        display: true,
+            text: '我喜欢的音乐歌手频率'
+      },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx2 = document.getElementById("myChart2");
+var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: singer_list2,
+        datasets: [{
+            label: '出现次数',
+            data: times_list2,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                 'rgba(255, 222, 64, 0.2)',
+                  'rgba(255, 2, 64, 0.2)',
+                   
+                    'rgba(255, 159,222, 0.2)',
+                    'rgba(33, 55, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 222, 64, 1)',
+                  'rgba(255, 2, 64, 1)',
+                   
+                    'rgba(255, 159,222, 1)',
+                    'rgba(33, 55, 64, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+       responsive: true,
+       maintainAspectRatio: false,
+       legend: {
+            fullWidth:false
+        },
+      title:{
+        display: true,
+            text: '我喜欢的音乐歌手频率'
+      },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<br>
+	<div class="table-content">
+    <h4>共同喜欢的歌:</h4>
+  <table class="table table-striped">
+
+    {% for uname in sameSongList %}
+    <tr>
+      <td>{{ uname }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  </div>
+
 
   	{% elif empty_flag  %}
      <h1>你的输入不合法！</h1>
@@ -73,7 +260,7 @@
 	{% endfor %}
 	{% endfor %}
 	</table> -->
-	<div id="wrapper" >
+	<div id="wrapper" class="col-md-4">
 	<canvas id="myChart"></canvas>
 	</div>
 	<script src="https://cdn.bootcss.com/Chart.js/2.5.0/Chart.js"></script>
@@ -88,7 +275,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: singer_list,
         datasets: [{
-            label: 'most',
+            label: '出现次数',
             data: times_list,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -96,7 +283,12 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                 'rgba(255, 222, 64, 0.2)',
+                  'rgba(255, 2, 64, 0.2)',
+                   
+                    'rgba(255, 159,222, 0.2)',
+                    'rgba(33, 55, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -104,7 +296,12 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 222, 64, 1)',
+                  'rgba(255, 2, 64, 1)',
+                   
+                    'rgba(255, 159,222, 1)',
+                    'rgba(33, 55, 64, 1)',
             ],
             borderWidth: 1
         }]
@@ -117,7 +314,7 @@ var myChart = new Chart(ctx, {
         },
     	title:{
     		display: true,
-            text: '歌手频率柱状图'
+            text: '我喜欢的音乐歌手频率'
     	},
         scales: {
             yAxes: [{

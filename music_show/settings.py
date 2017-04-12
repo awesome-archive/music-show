@@ -25,7 +25,7 @@ SECRET_KEY = '9q_@he%z_26qou^yubrvclid%=(#rz*wzt7$@yya)^d@1rudbx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xiaohuahu.tech','107.191.55.166','127.0.0.1','localhost']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'query_model',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [

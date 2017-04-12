@@ -119,15 +119,55 @@ class NeteaseSpider:
 	def singerAnalysis(self,singerList):
 
 		word_counts = Counter(singerList)
-		top_three = word_counts.most_common(3)
 		try:
-			x1 = top_three.pop()
-			x2 = top_three.pop()
-			x3 = top_three.pop()
+			top_three = word_counts.most_common(10)
 		except:
-			return 'error'
+			top_three = word_counts.most_common(5)
+		x = []
 		singer_info_list = []
-		singer_info_list.append(str(x3[0])+str('--')+str(x3[1]))  # most often 
-		singer_info_list.append(str(x2[0])+str('--')+str(x2[1]))
-		singer_info_list.append(str(x1[0])+str('--')+str(x1[1]))
+		for i in range(0,len(top_three)):
+			x.append(top_three.pop()) 
+			singer_info_list.append(str(x[i][0])+str('--')+str(x[i][1]))
+
+		# try:
+		# 	x1 = top_three.pop()
+		# 	x2 = top_three.pop()
+		# 	x3 = top_three.pop()
+		# 	x4 = top_three.pop()
+		# 	x5 = top_three.pop()
+		# 	x6 = top_three.pop()
+		# except:
+		# 	return 'error'
+		# singer_info_list = []
+		# singer_info_list.append(str(x6[0])+str('--')+str(x6[1])) 
+		# singer_info_list.append(str(x5[0])+str('--')+str(x5[1]))
+		# singer_info_list.append(str(x4[0])+str('--')+str(x4[1]))
+		# singer_info_list.append(str(x3[0])+str('--')+str(x3[1]))
+		# singer_info_list.append(str(x2[0])+str('--')+str(x2[1]))
+		# singer_info_list.append(str(x1[0])+str('--')+str(x1[1]))
 		return singer_info_list
+
+	def compare(self,iLikeSongList,iSingerList,uLikeSongList,uSingerList):
+
+		for i in range(0,len(iLikeSongList)):
+		    iLikeSongList[i] = iLikeSongList[i] + ' - ' + iSingerList[i]
+		for i in range(0,len(uLikeSongList)):
+		    uLikeSongList[i] = uLikeSongList[i] + ' - ' + uSingerList[i]
+
+	
+		print '------------------------------------------------------'
+	
+		#singerAnalysis(iSingerList,0)
+		print '------------------------------------------------------'
+
+		#singerAnalysis(uSingerList,0)
+		sameSongList = []
+		for isong in iLikeSongList:
+		    for usong in uLikeSongList:
+		        if str(isong) == str(usong):
+		            sameSongList.append(isong)
+		sameSongList = list(set(sameSongList))
+	
+
+		final_num = [len(iLikeSongList),len(uLikeSongList)]
+		return final_num,sameSongList

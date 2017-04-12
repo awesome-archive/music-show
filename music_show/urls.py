@@ -27,4 +27,8 @@ urlpatterns = [
     url(r'^getuserlist$',show.get_user_list),
     url(r'^analysis$',firstpage.analysis_page),
     url(r'^show-analysis$',analys.analysis),
+    url(r'^export2kgl$',search.export2kgl),
+    url(r'^compare$',firstpage.compare_page),
+    url(r'^show-compare$',search.compare),
+
 ]

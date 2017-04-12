@@ -8,3 +8,6 @@ def first_page(request):
 
 def analysis_page(request):
 	return render(request, 'analysis.html')
+
+def compare_page(request):
+	return render(request, 'compare.html')
